@@ -1,6 +1,5 @@
 ---
-allOf:
-  - $ref: core-event-schema/state_event.yaml
+type: object
 description: |-
     A room has an opaque room ID which is not human-friendly to read. A room
     alias is human-friendly, but not all rooms have room aliases. The room name
@@ -13,22 +12,21 @@ description: |-
 
     An event of this type is automatically created when creating a room using
     ``/createRoom`` with the ``name`` key.
-properties:
-  content:
-    properties:
-      name:
-        description: The name of the room. This MUST NOT exceed 255 bytes.
-        type: string
-    required:
-      - name
-    type: object
-  state_key:
-    description: A zero-length string.
-    pattern: '^$'
-    type: string
-  type:
-    enum:
-      - m.room.name
-    type: string
-title: RoomName
-type: object
+x-title: RoomName
+x-discriminator-value: m.room.name
+allOf:
+- $ref: core-event-schema/state_event.yaml
+- type: object
+  properties:
+    content:
+      properties:
+        name:
+          description: The name of the room. This MUST NOT exceed 255 bytes.
+          type: string
+      required:
+        - name
+      type: object
+    state_key:
+      description: A zero-length string.
+      pattern: '^$'
+      type: string

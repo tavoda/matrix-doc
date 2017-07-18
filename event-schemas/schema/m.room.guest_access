@@ -1,26 +1,24 @@
 ---
-allOf:
-  - $ref: core-event-schema/state_event.yaml
-description: 'This event controls whether guest users are allowed to join rooms. If this event is absent, servers should act as if it is present and has the guest_access value "forbidden".'
-properties:
-  content:
-    properties:
-      guest_access:
-        description: Whether guests can join the room.
-        enum:
-          - can_join
-          - forbidden
-        type: string
-    required:
-      - guest_access
-    type: object
-  state_key:
-    description: A zero-length string.
-    pattern: '^$'
-    type: string
-  type:
-    enum:
-      - m.room.guest_access
-    type: string
-title: Controls whether guest users are allowed to join rooms.
 type: object
+description: 'This event controls whether guest users are allowed to join rooms. If this event is absent, servers should act as if it is present and has the guest_access value "forbidden".'
+x-title: Controls whether guest users are allowed to join rooms.
+x-discriminator-value: m.room.guest_access
+allOf:
+- $ref: core-event-schema/state_event.yaml
+- type: object
+  properties:
+    content:
+      properties:
+        guest_access:
+          description: Whether guests can join the room.
+          enum:
+            - can_join
+            - forbidden
+          type: string
+      required:
+        - guest_access
+      type: object
+    state_key:
+      description: A zero-length string.
+      pattern: '^$'
+      type: string

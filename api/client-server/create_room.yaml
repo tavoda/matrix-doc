@@ -24,8 +24,6 @@ consumes:
   - application/json
 produces:
   - application/json
-securityDefinitions:
-  $ref: definitions/security.yaml
 paths:
   "/createRoom":
     post:
@@ -143,7 +141,7 @@ paths:
                   overriden by ``name`` and ``topic`` keys.
                 items:
                   type: object
-                  title: StateEvent
+                  title: InitialStateEvent
                   properties:
                     type:
                       type: string

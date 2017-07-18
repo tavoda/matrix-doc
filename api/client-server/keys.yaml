@@ -24,8 +24,6 @@ consumes:
   - application/json
 produces:
   - application/json
-securityDefinitions:
-  $ref: definitions/security.yaml
 paths:
   "/keys/upload":
     post:
@@ -46,8 +44,7 @@ paths:
                 description: |-
                   Identity keys for the device. May be absent if no new
                   identity keys are required.
-                allOf:
-                  - $ref: definitions/device_keys.yaml
+                $ref: definitions/device_keys.yaml
               one_time_keys:
                 type: object
                 description: |-
@@ -58,9 +55,7 @@ paths:
 
                   May be absent if no new one-time keys are required.
                 additionalProperties:
-                  type:
-                    - string
-                    - object
+                  type: object
                 example:
                   "curve25519:AAAAAQ": "/qyvZvwjiTxGdGU0RCguDCLeR+nmsb3FfNG3/Ve4vU8"
                   signed_curve25519:AAAAHg:
@@ -267,9 +262,7 @@ paths:
                 additionalProperties:
                   type: object
                   additionalProperties:
-                    type:
-                      - string
-                      - object
+                    type: object
                 example:
                   "@alice:example.com":
                     JLAFKJWSCS:

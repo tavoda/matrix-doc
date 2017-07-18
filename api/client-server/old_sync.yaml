@@ -24,86 +24,85 @@ consumes:
   - application/json
 produces:
   - application/json
-securityDefinitions:
-  $ref: definitions/security.yaml
 paths:
-  "/events":
-    get:
-      summary: Listen on the event stream.
-      description: |-
-        This will listen for new events and return them to the caller. This will
-        block until an event is received, or until the ``timeout`` is reached.
-
-        This endpoint was deprecated in r0 of this specification. Clients
-        should instead call the |/sync|_ API with a ``since`` parameter. See
-        the `migration guide
-        <https://matrix.org/docs/guides/client-server-migrating-from-v1.html#deprecated-endpoints>`_.
-      security:
-        - accessToken: []
-      parameters:
-        - in: query
-          type: string
-          name: from
-          description: |-
-            The token to stream from. This token is either from a previous
-            request to this API or from the initial sync API.
-          required: false
-          x-example: "s3456_9_0"
-        - in: query
-          type: integer
-          name: timeout
-          description: The maximum time in milliseconds to wait for an event.
-          required: false
-          x-example: "35000"
-      responses:
-        200:
-          description: "The events received, which may be none."
-          examples:
-            application/json: |-
-              {
-                "start": "s3456_9_0",
-                "end": "s3457_9_0",
-                "chunk": [
-                  {
-                    "age": 32,
-                    "content": {
-                        "body": "incoming message",
-                        "msgtype": "m.text"
-                    },
-                    "event_id": "$14328055551tzaee:localhost",
-                    "origin_server_ts": 1432804485886,
-                    "room_id": "!TmaZBKYIFrIPVGoUYp:localhost",
-                    "type": "m.room.message",
-                    "sender": "@bob:localhost"
-                  }
-                ]
-              }
-          schema:
-            type: object
-            properties:
-              start:
-                type: string
-                description: |-
-                  A token which correlates to the first value in ``chunk``. This
-                  is usually the same token supplied to ``from=``.
-              end:
-                type: string
-                description: |-
-                  A token which correlates to the last value in ``chunk``. This
-                  token should be used in the next request to ``/events``.
-              chunk:
-                type: array
-                description: "An array of events."
-                items:
-                  type: object
-                  title: Event
-                  allOf:
-                    - "$ref": "definitions/event-schemas/schema/core-event-schema/room_event.yaml"
-        400:
-          description: "Bad pagination ``from`` parameter."
-      tags:
-        - Room participation
-      deprecated: true
+# REPLACED in peeking_events.yaml
+#  "/events":
+#    get:
+#      summary: Listen on the event stream.
+#      description: |-
+#        This will listen for new events and return them to the caller. This will
+#        block until an event is received, or until the ``timeout`` is reached.
+#
+#        This endpoint was deprecated in r0 of this specification. Clients
+#        should instead call the |/sync|_ API with a ``since`` parameter. See
+#        the `migration guide
+#        <https://matrix.org/docs/guides/client-server-migrating-from-v1.html#deprecated-endpoints>`_.
+#      security:
+#        - accessToken: []
+#      parameters:
+#        - in: query
+#          type: string
+#          name: from
+#          description: |-
+#            The token to stream from. This token is either from a previous
+#            request to this API or from the initial sync API.
+#          required: false
+#          x-example: "s3456_9_0"
+#        - in: query
+#          type: integer
+#          name: timeout
+#          description: The maximum time in milliseconds to wait for an event.
+#          required: false
+#          x-example: "35000"
+#      responses:
+#        200:
+#          description: "The events received, which may be none."
+#          examples:
+#            application/json: |-
+#              {
+#                "start": "s3456_9_0",
+#                "end": "s3457_9_0",
+#                "chunk": [
+#                  {
+#                    "age": 32,
+#                    "content": {
+#                        "body": "incoming message",
+#                        "msgtype": "m.text"
+#                    },
+#                    "event_id": "$14328055551tzaee:localhost",
+#                    "origin_server_ts": 1432804485886,
+#                    "room_id": "!TmaZBKYIFrIPVGoUYp:localhost",
+#                    "type": "m.room.message",
+#                    "sender": "@bob:localhost"
+#                  }
+#                ]
+#              }
+#          schema:
+#            type: object
+#            properties:
+#              start:
+#                type: string
+#                description: |-
+#                  A token which correlates to the first value in ``chunk``. This
+#                  is usually the same token supplied to ``from=``.
+#              end:
+#                type: string
+#                description: |-
+#                  A token which correlates to the last value in ``chunk``. This
+#                  token should be used in the next request to ``/events``.
+#              chunk:
+#                type: array
+#                description: "An array of events."
+#                items:
+#                  type: object
+#                  title: Event
+#                  allOf:
+#                    - "$ref": "definitions/event-schemas/schema/core-event-schema/room_event.yaml"
+#        400:
+#          description: "Bad pagination ``from`` parameter."
+#      tags:
+#        - Room participation
+#      deprecated: true
   "/initialSync":
     get:
       summary: Get the user's current state.
@@ -433,8 +432,7 @@ paths:
                 "type": "m.room.message"
               }
           schema:
-            allOf:
-              - "$ref": "definitions/event-schemas/schema/core-event-schema/event.yaml"
+            "$ref": "definitions/event-schemas/schema/core-event-schema/event.yaml"
         404:
           description: The event was not found or you do not have permission to read this event.
       tags:

@@ -12,14 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-title: PushRule
+x-title: PushRule
 type: object
 properties:
   actions:
     items:
-      type:
-      - object
-      - string
+      type: object
     type: array
     description: |-
       The actions to perform when this rule is matched.
@@ -38,8 +36,7 @@ properties:
   conditions:
     type: array
     items:
-      allOf:
-      - $ref: push_condition.yaml
+      $ref: push_condition.yaml
     description: |-
       The conditions that must hold true for an event in order for a rule to be
       applied to an event. A rule with no conditions always matches. Only

@@ -24,8 +24,6 @@ consumes:
   - application/json
 produces:
   - application/json
-securityDefinitions:
-  $ref: definitions/security.yaml
 paths:
   "/presence/{userId}/status":
     put:
@@ -111,7 +109,7 @@ paths:
                   The length of time in milliseconds since an action was performed
                   by this user.
               status_msg:
-                type: [string, "null"]
+                type: string
                 description: The state message for this user if one was set.
               currently_active:
                 type: boolean

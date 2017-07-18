@@ -17,8 +17,7 @@ properties:
     description: The URL to a thumbnail of the image.
     type: string
   thumbnail_info:
-    allOf:
-      - $ref: thumbnail_info.yaml
+    $ref: thumbnail_info.yaml
     description: Metadata about the image referred to in ``thumbnail_url``.
-title: ImageInfo
+x-title: ImageInfo
 type: object

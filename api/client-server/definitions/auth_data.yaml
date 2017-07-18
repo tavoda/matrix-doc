@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-title: Authentication Data
+x-title: Authentication Data
 description: |-
   Used by clients to submit authentication information to the interactive-authentication API
 type: object

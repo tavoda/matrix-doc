@@ -1,0 +1,13 @@
+type: object
+description: This message is base for different types of m.room.message
+x-title: RoomMessageContent
+discriminator: msgtype
+properties:
+  body:
+    description: "A description of content, it should always contain text representation of rich media"
+    type: string
+  msgtype:
+    type: string
+required:
+- body
+- msgtype

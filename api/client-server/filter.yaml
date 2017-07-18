@@ -23,8 +23,6 @@ consumes:
   - application/json
 produces:
   - application/json
-securityDefinitions:
-  $ref: definitions/security.yaml
 paths:
   "/user/{userId}/filter":
     post:
@@ -50,8 +48,7 @@ paths:
           description: The filter to upload.
           schema:
             type: object
-            allOf:
-              - $ref: "definitions/sync_filter.yaml"
+            $ref: "definitions/sync_filter.yaml"
             example: |-
               {
                 "room": {

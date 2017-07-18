@@ -1,27 +1,24 @@
 ---
-allOf:
-  - $ref: core-event-schema/state_event.yaml
-description: A picture that is associated with the room. This can be displayed alongside the room information.
-properties:
-  content:
-    properties:
-      info:
-        allOf:
-          - $ref: core-event-schema/msgtype_infos/image_info.yaml
-        description: Metadata about the image referred to in ``url``.
-      url:
-        description: The URL to the image.
-        type: string
-    required:
-      - url
-    type: object
-  state_key:
-    description: A zero-length string.
-    pattern: '^$'
-    type: string
-  type:
-    enum:
-      - m.room.avatar
-    type: string
-title: RoomAvatar
 type: object
+description: A picture that is associated with the room. This can be displayed alongside the room information.
+x-title: RoomAvatar
+x-discriminator-value: m.room.avatar
+allOf:
+- $ref: core-event-schema/state_event.yaml
+- type: object
+  properties:
+    content:
+      properties:
+        info:
+          $ref: core-event-schema/msgtype_infos/image_info.yaml
+          description: Metadata about the image referred to in ``url``.
+        url:
+          description: The URL to the image.
+          type: string
+      required:
+        - url
+      type: object
+    state_key:
+      description: A zero-length string.
+      pattern: '^$'
+      type: string

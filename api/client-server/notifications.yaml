@@ -25,8 +25,6 @@ consumes:
   - application/json
 produces:
   - application/json
-securityDefinitions:
-  $ref: definitions/security.yaml
 paths:
   "/notifications":
     get:
@@ -112,15 +110,13 @@ paths:
                         The action(s) to perform when the conditions for this rule are met.
                         See `Push Rules: API`_.
                       items:
-                        type:
-                        - object
-                        - string
+                        type: object
                     event:
                       type: object
                       title: Event
                       description: The Event object for the event that triggered the notification.
                       allOf:
-                        - "$ref": "definitions/event.yaml"
+                        - "$ref": "definitions/event-schemas/schema/core-event-schema/event.yaml"
                     profile_tag:
                       type: string
                       description: The profile tag of the rule that matched this event.

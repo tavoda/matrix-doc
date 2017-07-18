@@ -15,8 +15,6 @@ properties:
   events:
     description: List of events
     items:
-      allOf:
-      - $ref: event.yaml
-      type: object
+      $ref: event-schemas/schema/core-event-schema/event.yaml
     type: array
 type: object

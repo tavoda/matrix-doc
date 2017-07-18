@@ -1,3 +1,4 @@
+type: object
 description: The basic set of fields all events must have.
 properties:
   content:
@@ -9,5 +10,39 @@ properties:
     description: The type of event. This SHOULD be namespaced similar to Java package
       naming conventions e.g. 'com.example.subdomain.event.type'
     type: string
-title: Event
-type: object
+discriminator: type
+required:
+- type
+x-include:
+  - $ref: '../m.call.answer'
+  - $ref: '../m.call.candidates'
+  - $ref: '../m.call.hangup'
+  - $ref: '../m.call.invite'
+  - $ref: '../m.direct'
+  - $ref: '../m.presence'
+  - $ref: '../m.receipt'
+  - $ref: '../m.room.aliases'
+  - $ref: '../m.room.avatar'
+  - $ref: '../m.room.canonical_alias'
+  - $ref: '../m.room.create'
+  - $ref: '../m.room.guest_access'
+  - $ref: '../m.room.history_visibility'
+  - $ref: '../m.room.join_rules'
+  - $ref: '../m.room.member'
+  - $ref: '../m.room.message'
+  - $ref: '../m.room.message.feedback'
+  - $ref: '../m.room.message#m.audio'
+  - $ref: '../m.room.message#m.emote'
+  - $ref: '../m.room.message#m.file'
+  - $ref: '../m.room.message#m.image'
+  - $ref: '../m.room.message#m.location'
+  - $ref: '../m.room.message#m.notice'
+  - $ref: '../m.room.message#m.text'
+  - $ref: '../m.room.message#m.video'
+  - $ref: '../m.room.name'
+  - $ref: '../m.room.power_levels'
+  - $ref: '../m.room.redaction'
+  - $ref: '../m.room.third_party_invite'
+  - $ref: '../m.room.topic'
+  - $ref: '../m.tag'
+  - $ref: '../m.typing'

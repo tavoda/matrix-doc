@@ -24,8 +24,6 @@ consumes:
   - application/json
 produces:
   - application/json
-securityDefinitions:
-  $ref: definitions/security.yaml
 paths:
   "/rooms/{roomId}/context/{eventId}":
     get:
@@ -76,28 +74,24 @@ paths:
                   A list of room events that happened just before the
                   requested event, in reverse-chronological order.
                 items:
-                  allOf:
-                    - "$ref": "definitions/event-schemas/schema/core-event-schema/room_event.yaml"
+                  "$ref": "definitions/event-schemas/schema/core-event-schema/room_event.yaml"
               event:
                 description: |-
                   Details of the requested event.
-                allOf:
-                  - "$ref": "definitions/event-schemas/schema/core-event-schema/room_event.yaml"
+                "$ref": "definitions/event-schemas/schema/core-event-schema/room_event.yaml"
               events_after:
                 type: array
                 description: |-
                   A list of room events that happened just after the
                   requested event, in chronological order.
                 items:
-                  allOf:
-                    - "$ref": "definitions/event-schemas/schema/core-event-schema/room_event.yaml"
+                  "$ref": "definitions/event-schemas/schema/core-event-schema/room_event.yaml"
               state:
                 type: array
                 description: |-
                   The state of the room at the last event returned.
                 items:
-                  allOf:
-                    - "$ref": "definitions/event-schemas/schema/core-event-schema/state_event.yaml"
+                  "$ref": "definitions/event-schemas/schema/core-event-schema/state_event.yaml"
           examples:
             application/json: |-
                 {

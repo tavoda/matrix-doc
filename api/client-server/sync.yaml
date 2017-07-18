@@ -23,8 +23,6 @@ consumes:
   - application/json
 produces:
   - application/json
-securityDefinitions:
-  $ref: definitions/security.yaml
 paths:
   "/sync":
     get:
@@ -129,7 +127,7 @@ paths:
                             ``timeline``, if ``since`` is not given, or
                             ``full_state`` is true).
                           allOf:
-                            - $ref: "definitions/event_batch.yaml"
+                            - $ref: "#definitions/EventBatch"
                         timeline:
                           title: Timeline
                           type: object
@@ -362,3 +360,14 @@ paths:
               }
       tags:
         - Room participation
+definitions:
+  EventBatch:
+    properties:
+      events:
+        description: List of events
+        items:
+          allOf:
+          - $ref: "definitions/event-schemas/schema/core-event-schema/event.yaml"
+          type: object
+        type: array
+    type: object

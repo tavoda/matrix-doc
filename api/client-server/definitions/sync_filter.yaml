@@ -30,12 +30,10 @@ properties:
     - federation
     type: string
   presence:
-    allOf:
-    - $ref: event_filter.yaml
+    $ref: event_filter.yaml
     description: The presence updates to include.
   account_data:
-    allOf:
-    - $ref: event_filter.yaml
+    $ref: event_filter.yaml
     description: The user account data that isn't associated with rooms to include.
   room:
     title: RoomFilter
@@ -57,24 +55,20 @@ properties:
           type: string
         type: array
       ephemeral:
-        allOf:
-        - $ref: room_event_filter.yaml
+        $ref: room_event_filter.yaml
         description: The events that aren't recorded in the room history, e.g. typing
           and receipts, to include for rooms.
       include_leave:
         description: Include rooms that the user has left in the sync, default false
         type: boolean
       state:
-        allOf:
-        - $ref: room_event_filter.yaml
+        $ref: room_event_filter.yaml
         description: The state events to include for rooms.
       timeline:
-        allOf:
-        - $ref: room_event_filter.yaml
+        $ref: room_event_filter.yaml
         description: The message and state update events to include for rooms.
       account_data:
-        allOf:
-        - $ref: room_event_filter.yaml
+        $ref: room_event_filter.yaml
         description: The per user account data to include for rooms.
     type: object
 type: object

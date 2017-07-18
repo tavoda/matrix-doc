@@ -14,7 +14,7 @@
 
 type: object
 description: A client device
-title: Device
+x-title: Device
 properties:
   device_id:
     type: string
