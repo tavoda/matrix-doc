@@ -47,7 +47,7 @@ paths:
                 description: The global ruleset.
                 title: Ruleset
                 allOf: [
-                  "$ref": "definitions/push_ruleset.yaml"
+                  "$ref": "definitions/event-schemas/schema/core-event-schema/push-rule/push_ruleset.yaml"
                 ]
           examples:
             application/json: |-
@@ -290,9 +290,7 @@ paths:
           schema:
             type: object
             description: The push rule.
-            allOf: [
-              "$ref": "definitions/push_rule.yaml"
-            ]
+            $ref: definitions/event-schemas/schema/core-event-schema/push-rule/push_rule.yaml
       tags:
         - Push notifications
     delete:
@@ -413,7 +411,7 @@ paths:
                   always matches. Only applicable to ``underride`` and ``override`` rules.
                 items:
                   type: object
-                  allOf: [ "$ref": "definitions/push_condition.yaml" ]
+                  $ref: definitions/event-schemas/schema/core-event-schema/push-rule/push_condition.yaml
               pattern:
                 type: string
                 description: |-

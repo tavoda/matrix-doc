@@ -28,6 +28,7 @@ paths:
   "/rooms/{roomId}/context/{eventId}":
     get:
       summary: Get events and state around the specified event.
+      operationId: getEventWithContext
       description: |-
         This API returns a number of events that happened just before and
         after the specified event. This allows clients to get the context
@@ -58,6 +59,7 @@ paths:
           description: The events and state surrounding the requested event.
           schema:
             type: object
+            title: EventWithContextResponse
             description: The events and state surrounding the requested event.
             properties:
               start:

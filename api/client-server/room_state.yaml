@@ -28,6 +28,7 @@ paths:
   "/rooms/{roomId}/state/{eventType}/{stateKey}":
     put:
       summary: Send a state event to the given room.
+      operationId: setRoomStateWithKey
       description: |
         State events can be sent using this endpoint.  These events will be
         overwritten if ``<room id>``, ``<event type>`` and ``<state key>`` all
@@ -79,6 +80,8 @@ paths:
               }
           schema:
             type: object
+            title: EventId
+            description: ID of created event
             properties:
               event_id:
                 type: string
@@ -89,6 +92,7 @@ paths:
   "/rooms/{roomId}/state/{eventType}":
     put:
       summary: Send a state event to the given room.
+      operationId: setRoomState
       description: |
         State events can be sent using this endpoint. This endpoint is
         equivalent to calling `/rooms/{roomId}/state/{eventType}/{stateKey}`
@@ -135,6 +139,8 @@ paths:
               }
           schema:
             type: object
+            title: EventId
+            description: ID of created event
             properties:
               event_id:
                 type: string

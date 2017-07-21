@@ -1,0 +1,7 @@
+type: "object"
+description: The mapping of user ID to receipt. The user ID is the entity who sent this receipt.
+x-pattern: "$USER_ID"
+properties:
+  ts:
+    type: "number"
+    description: "The timestamp the receipt was sent at."

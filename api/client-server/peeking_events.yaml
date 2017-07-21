@@ -28,6 +28,7 @@ paths:
   "/events":
     get:
       summary: Listen on the event stream.
+      operationId: listenForEvents
       description: |-
         This will listen for new events related to a particular room and return
         them to the caller. This will block until an event is received, or until
@@ -88,6 +89,7 @@ paths:
               }
           schema:
             type: object
+            title: ListenForEventsResponse
             properties:
               start:
                 type: string
@@ -104,9 +106,9 @@ paths:
                 description: "An array of events."
                 items:
                   type: object
-                  title: Event
-                  allOf:
-                    - "$ref": "definitions/event-schemas/schema/core-event-schema/room_event.yaml"
+                  $ref: "definitions/event-schemas/schema/core-event-schema/room_event.yaml"
         400:
           description: "Bad pagination ``from`` parameter."
-        # No tags to exclude this from the swagger UI - use the normal version instead.
+      deprecated: true
+      tags:
+        - Room participation

@@ -36,7 +36,9 @@ allOf:
       - "presence"
       - "user_id"
     event_id:
-      type: "string"
+      type: string
+    sender:
+      type: string
 required:
 - "event_id"
 - "type"

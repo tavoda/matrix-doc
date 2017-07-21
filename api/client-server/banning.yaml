@@ -48,6 +48,7 @@ paths:
           required: true
           schema:
             type: object
+            title: RoomBanRequest
             example: |-
               {
                 "reason": "Telling unfunny jokes",
@@ -105,6 +106,7 @@ paths:
           required: true
           schema:
             type: object
+            title: RoomUnbanRequest
             example: |-
               {
                 "user_id": "@cheeky_monkey:matrix.org"

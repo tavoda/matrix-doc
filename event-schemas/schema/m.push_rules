@@ -1,0 +1,23 @@
+---
+type: "object"
+description: "Push rules used definition of event pushing from server to consumer"
+x-title: "Push Rules"
+x-discriminator-value: m.push_rules
+allOf:
+- $ref: "core-event-schema/event.yaml"
+- type: object
+  properties:
+    content:
+      type: object
+      properties:
+        device:
+          type: object
+        global:
+          type: object
+          description: The global ruleset.
+          $ref: core-event-schema/push-rule/push_ruleset.yaml
+      required:
+        - global
+required:
+- "type"
+- "content"

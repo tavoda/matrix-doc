@@ -28,6 +28,7 @@ paths:
   "/login":
     post:
       summary: Authenticates the user.
+      operationId: login
       description: |-
         Authenticates the user, and issues an access token they can
         use to authorize themself in subsequent requests.
@@ -43,7 +44,7 @@ paths:
         - in: body
           name: body
           schema:
-            title: Login
+            title: LoginRequest
             type: object
             example: |-
               {
@@ -91,7 +92,6 @@ paths:
       responses:
         200:
           description: The user has been authenticated.
-          title: LoginResponse
           examples:
             application/json: |-
               {
@@ -101,6 +101,7 @@ paths:
                 "device_id": "GHTYAJCE"
               }
           schema:
+            title: LoginResponse
             type: object
             properties:
               user_id:

@@ -28,6 +28,7 @@ paths:
   "/createRoom":
     post:
       summary: Create a new room
+      operationId: createRoom
       description: |-
         Create a new room with various configuration options.
 
@@ -52,6 +53,7 @@ paths:
           description: The desired room configuration.
           schema:
             type: object
+            title: CreateRoomRequest
             example: |-
               {
                 "preset": "public_chat",
@@ -179,6 +181,7 @@ paths:
           description: Information about the newly created room.
           schema:
             type: object
+            title: CreateRoomResponse
             description: Information about the newly created room.
             properties:
               room_id:

@@ -116,3 +116,12 @@ allOf:
     state_key:
       description: The ``user_id`` this membership event relates to.
       type: string
+    # TODO: Membership is here and also inside content: ?
+    membership:
+      description: The membership state of the user.
+      enum:
+        - invite
+        - join
+        - knock
+        - leave
+        - ban

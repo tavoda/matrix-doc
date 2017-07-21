@@ -27,6 +27,8 @@ allOf:
       type: number
     unsigned:
       description: Contains optional extra information about the event.
+      title: UnsignedData
+      type: object
       properties:
         age:
           description: The time in milliseconds that has elapsed since the event was
@@ -42,8 +44,19 @@ allOf:
           description: The client-supplied transaction ID, if the client being given
             the event is the same one which sent it.
           type: string
-      title: UnsignedData
-      type: object
+        prev_sender:
+          description: Contains the fully-qualified ID of the user who *sent* previous event.
+          type: string
+        prev_content:
+          # TODO: Moved from direct properties of state_event.yaml to 'unsigned'
+          description: Optional. The previous ``content`` for this event. If there is no
+            previous content, this key will be missing.
+          title: EventContent
+          type: object
+        replaces_state:
+          # TODO: Is it general attribute of state event? Appear in m.room.member event
+          description: Previous state event
+          type: string
 required:
 - event_id
 - room_id

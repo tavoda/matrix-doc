@@ -15,6 +15,8 @@ paths:
   "/rooms/{roomId}/initialSync":
     get:
       summary: Snapshot the current state of a room and its most recent messages.
+      operationId: roomInitialSync
+      deprecated: true
       description: |-
         Get a copy of the current state and the most recent messages in a room.
 
@@ -155,7 +157,7 @@ paths:
                 }]
               }
           schema:
-            title: RoomInfo
+            title: RoomInitialSyncResponse
             type: object
             properties:
               room_id:
@@ -228,4 +230,3 @@ paths:
             member of the room.
       tags:
         - Room participation
-      deprecated: true

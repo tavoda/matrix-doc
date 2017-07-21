@@ -27,6 +27,7 @@ paths:
   "/sync":
     get:
       summary: Synchronise the client's state and receive new messages.
+      operationId: sync
       description: |-
         Synchronise the client's state with the latest state on the server.
         Clients use this API when they first log in to get an initial snapshot
@@ -96,6 +97,7 @@ paths:
             state.
           schema:
             type: object
+            title: SyncResponse
             properties:
               next_batch:
                 type: string
@@ -126,16 +128,14 @@ paths:
                             ``timeline`` (or all state up to the start of the
                             ``timeline``, if ``since`` is not given, or
                             ``full_state`` is true).
-                          allOf:
-                            - $ref: "#definitions/EventBatch"
+                          $ref: "#definitions/EventBatch"
                         timeline:
                           title: Timeline
                           type: object
                           description: |-
                             The timeline of messages and state changes in the
                             room.
-                          allOf:
-                            - $ref: "definitions/timeline_batch.yaml"
+                          $ref: "definitions/timeline_batch.yaml"
                         ephemeral:
                           title: Ephemeral
                           type: object
@@ -143,16 +143,16 @@ paths:
                             The ephemeral events in the room that aren't
                             recorded in the timeline or state of the room.
                             e.g. typing.
-                          allOf:
-                            - $ref: "definitions/event_batch.yaml"
+                          $ref: "definitions/event_batch.yaml"
                         account_data:
                           title: Account Data
                           type: object
                           description: |-
                             The private data that this user has attached to
                             this room.
-                          allOf:
-                          - $ref: "definitions/event_batch.yaml"
+                          additionalProperties:
+                            type: object
+#                          $ref: "definitions/event_batch.yaml"
                         "unread_notifications":
                           title: Unread Notification Counts
                           type: object
@@ -194,8 +194,7 @@ paths:
                             the room then the current state will be given as a
                             delta against the archived ``state`` not the
                             ``invite_state``.
-                          allOf:
-                            - $ref: "definitions/event_batch.yaml"
+                          $ref: "definitions/event_batch.yaml"
                   leave:
                     title: Left rooms
                     type: object
@@ -210,30 +209,26 @@ paths:
                           type: object
                           description: |-
                             The state updates for the room up to the start of the timeline.
-                          allOf:
-                            - $ref: "definitions/event_batch.yaml"
+                          $ref: "definitions/event_batch.yaml"
                         timeline:
                           title: Timeline
                           type: object
                           description: |-
                             The timeline of messages and state changes in the
                             room up to the point when the user left.
-                          allOf:
-                            - $ref: "definitions/timeline_batch.yaml"
+                          $ref: "definitions/timeline_batch.yaml"
               presence:
                 title: Presence
                 type: object
                 description: |-
                   The updates to the presence status of other users.
-                allOf:
-                  - $ref: "definitions/event_batch.yaml"
+                $ref: "definitions/event_batch.yaml"
               account_data:
                 title: Account Data
                 type: object
                 description: |-
                   The global private data created by this user.
-                allOf:
-                  - $ref: "definitions/event_batch.yaml"
+                $ref: "definitions/event_batch.yaml"
               to_device:
                 title: ToDevice
                 type: object
@@ -246,6 +241,9 @@ paths:
                 description: |-
                   Information on end-to-end device updates, as specified in
                   |device_lists_sync|_.
+              device_one_time_keys_count:
+                title: DeviceKeysCount
+                type: object
           examples:
             application/json: |-
               {
@@ -366,8 +364,7 @@ definitions:
       events:
         description: List of events
         items:
-          allOf:
-          - $ref: "definitions/event-schemas/schema/core-event-schema/event.yaml"
           type: object
+          $ref: "definitions/event-schemas/schema/core-event-schema/event.yaml"
         type: array
     type: object

@@ -5,11 +5,6 @@ allOf:
 - $ref: room_event.yaml
 - type: object
   properties:
-    prev_content:
-      description: Optional. The previous ``content`` for this event. If there is no
-        previous content, this key will be missing.
-      title: EventContent
-      type: object
     state_key:
       description: A unique key which defines the overwriting semantics for this piece
         of room state. This value is often a zero-length string. The presence of this

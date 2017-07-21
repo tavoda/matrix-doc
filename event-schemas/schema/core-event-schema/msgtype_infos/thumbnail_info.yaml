@@ -1,5 +1,5 @@
 description: Metadata about a thumbnail image.
-$schema: http://json-schema.org/draft-04/schema#
+x-schema: http://json-schema.org/draft-04/schema#
 properties:
   h:
     description: The height of the image in pixels.

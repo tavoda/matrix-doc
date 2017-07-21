@@ -20,6 +20,7 @@ x-include:
   - $ref: '../m.call.invite'
   - $ref: '../m.direct'
   - $ref: '../m.presence'
+  - $ref: '../m.push_rules'
   - $ref: '../m.receipt'
   - $ref: '../m.room.aliases'
   - $ref: '../m.room.avatar'

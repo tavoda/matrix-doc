@@ -26,6 +26,7 @@ paths:
   "/versions":
     get:
       summary: Gets the versions of the specification supported by the server.
+      operationId: versions
       description: |-
         Gets the versions of the specification supported by the server.
 
@@ -43,6 +44,7 @@ paths:
               }
           schema:
             type: object
+            title: VersionsResponse
             properties:
               versions:
                 type: array

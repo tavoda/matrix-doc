@@ -28,6 +28,7 @@ paths:
   "/rooms/{roomId}/state/{eventType}/{stateKey}":
     get:
       summary: Get the state identified by the type and key.
+      operationId: getRoomStateWithKey
       description: |-
         Looks up the contents of a state event in a room. If the user is
         joined to the room then the state is taken from the current
@@ -62,6 +63,7 @@ paths:
               {"name": "Example room name"}
           schema:
             type: object
+            $ref: "definitions/event-schemas/schema/core-event-schema/state_event.yaml"
         404:
           description: The room has no state with the given type or key.
         403:
@@ -73,6 +75,7 @@ paths:
   "/rooms/{roomId}/state/{eventType}":
     get:
       summary: Get the state identified by the type, with the empty state key.
+      operationId: getRoomState
       description: |-
         Looks up the contents of a state event in a room. If the user is
         joined to the room then the state is taken from the current
@@ -103,6 +106,7 @@ paths:
               {"name": "Example room name"}
           schema:
             type: object
+            $ref: "definitions/event-schemas/schema/core-event-schema/state_event.yaml"
         404:
           description: The room has no state with the given type or key.
         403:
@@ -114,6 +118,7 @@ paths:
   "/rooms/{roomId}/state":
     get:
       summary: Get all state events in the current state of a room.
+      operationId: getAllRoomStates
       description: |-
         Get the state events for the current state of a room.
       security:
@@ -211,17 +216,14 @@ paths:
               ]
           schema:
             type: array
-            title: RoomState
             description: |-
               If the user is a member of the room this will be the
               current state of the room as a list of events. If the user
               has left the room then this will be the state of the room
               when they left as a list of events.
             items:
-              title: StateEvent
               type: object
-              allOf:
-                - "$ref": "definitions/event-schemas/schema/core-event-schema/state_event.yaml"
+              $ref: "definitions/event-schemas/schema/core-event-schema/state_event.yaml"
         403:
           description: >
             You aren't a member of the room and weren't previously a
@@ -231,6 +233,7 @@ paths:
   "/rooms/{roomId}/members":
     get:
       summary: Get the m.room.member events for the room.
+      operationId: getRoomMembers
       description:
         Get the list of members for this room.
       parameters:
@@ -283,14 +286,13 @@ paths:
               }
           schema:
             type: object
+            title: GetRoomMembersResponse
             properties:
               chunk:
                 type: array
                 items:
-                  title: MemberEvent
                   type: object
-                  allOf:
-                    - "$ref": "definitions/event-schemas/schema/m.room.member"
+                  $ref: "definitions/event-schemas/schema/m.room.member"
         403:
           description: >
             You aren't a member of the room and weren't previously a

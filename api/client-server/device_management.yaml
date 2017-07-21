@@ -29,6 +29,7 @@ paths:
   "/devices":
     get:
       summary: List registered devices for the current user
+      operationId: getDevices
       description: |-
         Gets information about all devices for the current user.
       security:
@@ -38,6 +39,7 @@ paths:
           description: Device information
           schema:
             type: object
+            title: DevicesResponse
             properties:
               devices:
                 type: array
@@ -63,6 +65,7 @@ paths:
   "/devices/{deviceId}":
     get:
       summary: Get a single device
+      operationId: getDevice
       description: |-
         Gets information on a single device, by device id.
       security:
@@ -79,8 +82,7 @@ paths:
           description: Device information
           schema:
             type: object
-            allOf:
-               - $ref: "definitions/client_device.yaml"
+            $ref: "definitions/client_device.yaml"
           examples:
             application/json: |-
               {
@@ -95,6 +97,7 @@ paths:
         - Device management
     put:
       summary: Update a device
+      operationId: updateDevice
       description: |-
         Updates the metadata on the given device.
       security:
@@ -112,6 +115,7 @@ paths:
           description: New information for the device.
           schema:
             type: object
+            title: DeviceUpdateRequest
             properties:
               display_name:
                 type: string
@@ -133,6 +137,7 @@ paths:
         - Device management
     delete:
       summary: Delete a device
+      operationId: deleteDevice
       description: |-
         This API endpoint uses the `User-Interactive Authentication API`_.
 
@@ -150,6 +155,7 @@ paths:
           name: body
           schema:
             type: object
+            title: DeviceDeleteRequest
             properties:
               auth:
                 description: |-

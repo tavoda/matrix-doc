@@ -28,6 +28,7 @@ paths:
   "/admin/whois/{userId}":
     get:
       summary: Gets information about a particular user.
+      operationId: whoIs
       description: |-
         Gets information about a particular user.
 
@@ -73,6 +74,7 @@ paths:
               }
           schema:
             type: object
+            title: WhoIsResponse
             properties:
               user_id:
                 type: string

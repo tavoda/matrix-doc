@@ -11,40 +11,30 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+type: object
 properties:
   content:
-    items:
-      allOf:
-      - $ref: push_rule.yaml
-      title: PushRule
-      type: object
     type: array
+    items:
+      type: object
+      $ref: push_rule.yaml
   override:
-    items:
-      allOf:
-      - $ref: push_rule.yaml
-      title: PushRule
-      type: object
     type: array
+    items:
+      type: object
+      $ref: push_rule.yaml
   room:
-    items:
-      allOf:
-      - $ref: push_rule.yaml
-      title: PushRule
-      type: object
     type: array
+    items:
+      type: object
+      $ref: push_rule.yaml
   sender:
-    items:
-      allOf:
-      - $ref: push_rule.yaml
-      title: PushRule
-      type: object
     type: array
+    items:
+      type: object
+      $ref: push_rule.yaml
   underride:
-    items:
-      allOf:
-      - $ref: push_rule.yaml
-      title: PushRule
-      type: object
     type: array
-type: object
+    items:
+      type: object
+      $ref: push_rule.yaml

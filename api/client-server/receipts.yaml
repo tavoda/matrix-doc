@@ -28,6 +28,7 @@ paths:
   "/rooms/{roomId}/receipt/{receiptType}/{eventId}":
     post:
       summary: Send a receipt for the given event ID.
+      operationId: sendReceipt
       description: |-
         This API updates the marker for the given receipt type to the event ID
         specified.
@@ -68,8 +69,6 @@ paths:
           examples:
             application/json: |-
               {}
-          schema:
-            type: object  # empty json object
         429:
           description: This request was rate-limited.
           schema:

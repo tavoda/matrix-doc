@@ -28,6 +28,7 @@ paths:
   "/rooms/{roomId}/send/{eventType}/{txnId}":
     put:
       summary: Send a message event to the given room.
+      operationId: sendEvent
       description: |-
         This endpoint is used to send a message event to a room. Message events
         allow access to historical events and pagination, making them suited
@@ -64,6 +65,7 @@ paths:
           name: body
           schema:
             type: object
+            $ref: definitions/event-schemas/schema/core-event-schema/room_event.yaml
             example: |-
               {
                 "msgtype": "m.text",
@@ -79,6 +81,8 @@ paths:
               }
           schema:
             type: object
+            title: EventId
+            description: ID of created event
             properties:
               event_id:
                 type: string

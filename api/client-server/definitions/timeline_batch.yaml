@@ -13,13 +13,14 @@
 # limitations under the License.
 allOf:
 - $ref: event_batch.yaml
-properties:
-  limited:
-    description: True if the number of events returned was limited by the ``limit``
-      on the filter
-    type: boolean
-  prev_batch:
-    description: A token that can be supplied to to the ``from`` parameter of the
-      rooms/{roomId}/messages endpoint
-    type: string
+- type: object
+  properties:
+    limited:
+      description: True if the number of events returned was limited by the ``limit``
+        on the filter
+      type: boolean
+    prev_batch:
+      description: A token that can be supplied to to the ``from`` parameter of the
+        rooms/{roomId}/messages endpoint
+      type: string
 type: object

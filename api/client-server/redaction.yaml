@@ -28,6 +28,7 @@ paths:
   "/rooms/{roomId}/redact/{eventId}/{txnId}":
     put:
       summary: Strips all non-integrity-critical information out of an event.
+      operationId: stripEvent
       description: |-
         Strips all information out of an event which isn't critical to the
         integrity of the server-side representation of the room.
@@ -64,6 +65,7 @@ paths:
           name: body
           schema:
             type: object
+            title: StripEventResponse
             example: |-
               {
                 "reason": "Indecent material"
@@ -82,6 +84,8 @@ paths:
               }
           schema:
             type: object
+            title: EventId
+            description: ID of created event
             properties:
               event_id:
                 type: string

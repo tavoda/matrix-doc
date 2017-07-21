@@ -54,6 +54,7 @@ paths:
               }
           schema:
             type: object
+            title: Account3pidResponse
             properties:
               threepids:
                 type: array

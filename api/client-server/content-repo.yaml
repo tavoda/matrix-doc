@@ -51,6 +51,7 @@ paths:
           description: The MXC URI for the uploaded content.
           schema:
             type: object
+            title: UploadResponse
             required: ["content_uri"]
             properties:
               content_uri:

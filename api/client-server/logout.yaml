@@ -28,6 +28,7 @@ paths:
   "/logout":
     post:
       summary: Invalidates a user access token
+      operationId: logout
       description: |-
         Invalidates an existing access token, so that it can no longer be used for
         authorization.
