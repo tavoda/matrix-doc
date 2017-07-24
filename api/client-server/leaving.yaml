@@ -40,6 +40,7 @@ paths:
 
         The user will still be allowed to retrieve history from the room which
         they were previously allowed to see.
+      operationId: roomLeave
       security:
         - accessToken: []
       parameters:
@@ -56,8 +57,6 @@ paths:
           examples:
             application/json: |-
               {}
-          schema:
-            type: object
         429:
           description: This request was rate-limited.
           schema:
@@ -77,6 +76,7 @@ paths:
 
         If the user is currently joined to the room, they will implicitly leave
         the room as part of this API call.
+      operationId: roomForget
       security:
         - accessToken: []
       parameters:
@@ -93,8 +93,6 @@ paths:
           examples:
             application/json: |-
               {}
-          schema:
-            type: object
         429:
           description: This request was rate-limited.
           schema:

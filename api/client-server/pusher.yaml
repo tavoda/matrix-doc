@@ -28,8 +28,8 @@ paths:
   "/pushers":
     get:
       summary: Gets the current pushers for the authenticated user
-      description: |-
-          Gets all currently active pushers for the authenticated user
+      description: Gets all currently active pushers for the authenticated user
+      operationId: getPushers
       security:
         - accessToken: []
       responses:
@@ -55,6 +55,7 @@ paths:
               }
           schema:
             type: object
+            title: PushersResponse
             properties:
               pushers:
                 type: array
@@ -122,12 +123,13 @@ paths:
         This endpoint allows the creation, modification and deletion of `pushers`_
         for this user ID. The behaviour of this endpoint varies depending on the
         values in the JSON body.
+      operationId: setPushers
       security:
         - accessToken: []
       parameters:
         - in: body
-          name: pusher
           description: The pusher information
+          name: PushersRequest
           required: true
           schema:
             type: object
@@ -216,8 +218,6 @@ paths:
           examples:
             application/json: |-
               {}
-          schema:
-            type: object  # empty json object
         400:
           description: One or more of the pusher values were invalid.
           examples:

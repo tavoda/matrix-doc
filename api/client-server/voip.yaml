@@ -28,9 +28,8 @@ paths:
   "/voip/turnServer":
     get:
       summary: Obtain TURN server credentials.
-      description: |-
-        This API provides credentials for the client to use when initiating
-        calls.
+      description: This API provides credentials for the client to use when initiating calls.
+      operationId: getTurnCredentials
       security:
         - accessToken: []
       responses:
@@ -50,15 +49,14 @@ paths:
               }
           schema:
             type: object
+            title: TurnCredentialsResponse
             properties:
               username:
                 type: string
-                description: |-
-                  The username to use.
+                description: The username to use.
               password:
                 type: string
-                description: |-
-                  The password to use.
+                description: The password to use.
               uris:
                 type: array
                 items:

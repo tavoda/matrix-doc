@@ -42,6 +42,7 @@ paths:
         If a ``third_party_signed`` was supplied, the homeserver must verify
         that it matches a pending ``m.room.third_party_invite`` event in the
         room, and perform key validity checking if required by the event.
+      operationId: roomJoin
       security:
         - accessToken: []
       parameters:
@@ -52,9 +53,16 @@ paths:
           required: true
           x-example: "!d41d8cd:matrix.org"
         - in: body
-          name: third_party_signed
+          name: ThirdParty
+          type: object
           schema:
             type: object
+            title: RoomJoinRequest
+            name: RoomJoinRequest
+            properties:
+              third_party_signed:
+                type: object
+                $ref: "#/definitions/ThirdParty"
             example: |-
               {
                 "third_party_signed": {
@@ -68,26 +76,6 @@ paths:
                   }
                 }
               }
-            properties:
-              third_party_signed:
-                type: object
-                title: ThirdPartySigned
-                description: A signature of an ``m.third_party_invite`` token to prove that this user owns a third party identity which has been invited to the room.
-                properties:
-                  sender:
-                    type: string
-                    description: The Matrix ID of the user who issued the invite.
-                  mxid:
-                    type: string
-                    description: The Matrix ID of the invitee.
-                  token:
-                    type: string
-                    description: The state key of the m.third_party_invite event.
-                  signatures:
-                    type: object
-                    description: A signatures object containing a signature of the entire signed object.
-                    title: Signatures
-                required: ["sender", "mxid", "token", "signatures"]
       responses:
         200:
           description: |-
@@ -98,7 +86,7 @@ paths:
             application/json: |-
               {"room_id": "!d41d8cd:matrix.org"}
           schema:
-            type: object
+            $ref: "#/definitions/RoomIdResponse"
         403:
           description: |-
             You do not have permission to join the room. A meaningful ``errcode`` and description error text will be returned. Example reasons for rejection are:
@@ -131,6 +119,7 @@ paths:
         If a ``third_party_signed`` was supplied, the homeserver must verify
         that it matches a pending ``m.room.third_party_invite`` event in the
         room, and perform key validity checking if required by the event.
+      operationId: roomJoinByAlias
       security:
         - accessToken: []
       parameters:
@@ -141,9 +130,20 @@ paths:
           required: true
           x-example: "#monkeys:matrix.org"
         - in: body
-          name: third_party_signed
+          name: ThirdPartySigned
           schema:
             type: object
+            title: RoomJoinWithAliasRequest
+            properties:
+              third_party_signed:
+                type: object
+                description: A signature of an ``m.third_party_invite`` token to prove that this user owns a third party identity which has been invited to the room.
+                title: ThirdPartySignedSigned
+                properties:
+                  signed:
+                    type: object
+                    $ref: "#/definitions/ThirdParty"
+                required: ["signed"]
             example: |-
               {
                 "third_party_signed": {
@@ -159,31 +159,6 @@ paths:
                   }
                 }
               }
-            properties:
-              third_party_signed:
-                type: object
-                title: ThirdPartySigned
-                description: A signature of an ``m.third_party_invite`` token to prove that this user owns a third party identity which has been invited to the room.
-                properties:
-                  signed:
-                    type: object
-                    title: Signed
-                    properties:
-                      sender:
-                        type: string
-                        description: The Matrix ID of the user who issued the invite.
-                      mxid:
-                        type: string
-                        description: The Matrix ID of the invitee.
-                      token:
-                        type: string
-                        description: The state key of the m.third_party_invite event.
-                      signatures:
-                        type: object
-                        description: A signatures object containing a signature of the entire signed object.
-                        title: Signatures
-                    required: ["sender", "mxid", "token", "signatures"]
-                required: ["signed"]
       responses:
         200:
           description: |-
@@ -194,7 +169,7 @@ paths:
             application/json: |-
               {"room_id": "!d41d8cd:matrix.org"}
           schema:
-            type: object
+            $ref: "#/definitions/RoomIdResponse"
         403:
           description: |-
             You do not have permission to join the room. A meaningful ``errcode`` and description error text will be returned. Example reasons for rejection are:
@@ -210,3 +185,39 @@ paths:
             "$ref": "definitions/error.yaml"
       tags:
         - Room membership
+definitions:
+  ThirdParty:
+    type: object
+    description: A signature of an ``m.third_party_invite`` token to prove that this user owns a third party identity which has been invited to the room.
+    properties:
+      sender:
+        type: string
+        description: The Matrix ID of the user who issued the invite.
+      mxid:
+        type: string
+        description: The Matrix ID of the invitee.
+      token:
+        type: string
+        description: The state key of the m.third_party_invite event.
+      signatures:
+        type: object
+        description: A signatures object containing a signature of the entire signed object.
+        title: Signatures
+    required: ["sender", "mxid", "token", "signatures"]
+    example: |-
+      {
+          "sender": "@cat:the.hat",
+          "mxid": "@green:eggs.ham",
+          "token": "random8nonce",
+          "signatures": {
+            "horton.hears": {
+              "ed25519:0": "some9signature"
+            }
+          }
+      }
+  RoomIdResponse:
+    type: object
+    properties:
+      room_id:
+        type: string
+        description: RoomId of joined room

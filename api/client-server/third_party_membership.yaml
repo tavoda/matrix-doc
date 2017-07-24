@@ -73,6 +73,7 @@ paths:
         append a ``m.room.third_party_invite`` event to the room.
 
         .. _joining rooms section: `invite-by-user-id-endpoint`_
+      operationId: roomInvite
       security:
         - accessToken: []
       parameters:
@@ -87,6 +88,7 @@ paths:
           required: true
           schema:
             type: object
+            title: RoomInviteRequest
             example: |-
               {
                 "id_server": "matrix.org",
@@ -111,8 +113,6 @@ paths:
           examples:
             application/json: |-
               {}
-          schema:
-            type: object
         403:
           description: |-
             You do not have permission to invite the user to the room. A meaningful ``errcode`` and description error text will be returned. Example reasons for rejections are:

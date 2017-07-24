@@ -33,6 +33,7 @@ paths:
         the activity time is updated to reflect that activity; the client does
         not need to specify the ``last_active_ago`` field. You cannot set the
         presence state of another user.
+      operationId: setPresenceStatus
       security:
         - accessToken: []
       parameters:
@@ -48,6 +49,7 @@ paths:
           required: true
           schema:
             type: object
+            title: PresenceStatusRequest
             example: |-
               {
                 "presence": "online",
@@ -68,8 +70,6 @@ paths:
           examples:
             application/json: |-
               {}
-          schema:
-            type: object  # empty json object
         429:
           description: This request was rate-limited.
           schema:
@@ -77,6 +77,7 @@ paths:
       tags:
         - Presence
     get:
+      operationId: getPresenceStatus
       summary: Get this user's presence state.
       description: |-
         Get the given user's presence state.
@@ -98,6 +99,7 @@ paths:
               }
           schema:
             type: object
+            title: PresenceStatusResponse
             properties:
               presence:
                 type: string
@@ -124,6 +126,7 @@ paths:
   "/presence/list/{userId}":
     post:
       summary: Add or remove users from this presence list.
+      operationId: setPresenceList
       description: |-
         Adds or removes users from this presence list.
       security:
@@ -141,6 +144,7 @@ paths:
           required: true
           schema:
             type: object
+            title: PresenceListRequest
             example: |-
               {
                 "invite": [
@@ -169,8 +173,6 @@ paths:
           examples:
             application/json: |-
               {}
-          schema:
-            type: object  # empty json object
         429:
           description: This request was rate-limited.
           schema:
@@ -181,6 +183,7 @@ paths:
       summary: Get presence events for this presence list.
       description: |-
         Retrieve a list of presence events for every user on this list.
+      operationId: getPresenceList
       parameters:
         - in: path
           type: string
@@ -216,8 +219,6 @@ paths:
             type: array
             items:
               type: object
-              title: PresenceEvent
-              allOf:
-                - "$ref": "definitions/event-schemas/schema/core-event-schema/event.yaml"
+              $ref: definitions/event-schemas/schema/m.presence
       tags:
         - Presence

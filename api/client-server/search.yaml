@@ -30,6 +30,7 @@ paths:
       summary: Perform a server-side search.
       description: |-
         Performs a full text search across different categories.
+      operationId: search
       security:
         - accessToken: []
       parameters:
@@ -44,6 +45,7 @@ paths:
           name: body
           schema:
             type: object
+            title: SearchRequest
             example: |-
               {
                 "search_categories": {
@@ -155,7 +157,7 @@ paths:
           description: Results of the search.
           schema:
             type: object
-            title: Results
+            title: SearchResponse
             required: ["search_categories"]
             properties:
               search_categories:

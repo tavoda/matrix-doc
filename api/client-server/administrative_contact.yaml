@@ -37,6 +37,7 @@ paths:
 
         Identifiers in this list may be used by the homeserver as, for example,
         identifiers that it will accept to reset the user's account password.
+      operationId: getUserIdentifiers
       security:
         - accessToken: []
       responses:
@@ -54,7 +55,7 @@ paths:
               }
           schema:
             type: object
-            title: Account3pidResponse
+            title: UserIdentifiersResponse
             properties:
               threepids:
                 type: array
@@ -74,6 +75,7 @@ paths:
     post:
       summary: Adds contact information to the user's account.
       description: Adds contact information to the user's account.
+      operationId: addCredentials
       security:
         - accessToken: []
       parameters:
@@ -81,6 +83,7 @@ paths:
           name: body
           schema:
             type: object
+            title: AddCredentialsRequest
             properties:
               three_pid_creds:
                 title: "ThreePidCredentials"
@@ -119,8 +122,6 @@ paths:
           description: The addition was successful.
           examples:
             application/json: "{}"
-            schema:
-              type: object
         403:
           description: The credentials could not be verified with the identity server.
           examples:
@@ -141,6 +142,7 @@ paths:
         validation tokens when adding an email address to an account. This API's
         parameters and response is identical to that of the HS API
         |/register/email/requestToken|_ endpoint.
+      operationId: requestEmailValidationAfterAdd
       responses:
         200:
           description: An email was sent to the given address

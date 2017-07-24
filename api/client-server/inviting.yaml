@@ -49,6 +49,7 @@ paths:
         ``m.room.member`` event to the room.
 
         .. _third party invites section: `invite-by-third-party-id-endpoint`_
+      operationId: roomInviteUser
       security:
         - accessToken: []
       parameters:
@@ -63,6 +64,7 @@ paths:
           required: true
           schema:
             type: object
+            title: RoomInviteUserRequest
             example: |-
               {
                 "user_id": "@cheeky_monkey:matrix.org"
@@ -78,8 +80,6 @@ paths:
           examples:
             application/json: |-
               {}
-          schema:
-            type: object
         403:
           description: |-
             You do not have permission to invite the user to the room. A meaningful ``errcode`` and description error text will be returned. Example reasons for rejections are:

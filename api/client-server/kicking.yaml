@@ -32,6 +32,7 @@ paths:
         Kick a user from the room.
 
         The caller must have the required power level in order to perform this operation.
+      operationId: roomKickUser
       security:
         - accessToken: []
       parameters:
@@ -46,6 +47,7 @@ paths:
           required: true
           schema:
             type: object
+            title: KickUserRequest
             example: |-
               {
                 "reason": "Telling unfunny jokes",
@@ -65,8 +67,6 @@ paths:
           examples:
             application/json: |-
               {}
-          schema:
-            type: object
         403:
           description: |-
             You do not have permission to kick the user from the room. A meaningful ``errcode`` and description error text will be returned. Example reasons for rejections are:

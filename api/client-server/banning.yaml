@@ -34,6 +34,7 @@ paths:
         When a user is banned from a room, they may not join it or be invited to it until they are unbanned.
 
         The caller must have the required power level in order to perform this operation.
+      operationId: roomBanUser
       security:
         - accessToken: []
       parameters:
@@ -68,8 +69,6 @@ paths:
           examples:
             application/json: |-
               {}
-          schema:
-            type: object
         403:
           description: |-
             You do not have permission to ban the user from the room. A meaningful ``errcode`` and description error text will be returned. Example reasons for rejections are:
@@ -92,6 +91,7 @@ paths:
         and join if they would otherwise be allowed to join according to its join rules.
 
         The caller must have the required power level in order to perform this operation.
+      operationId: roomUnbanUser
       security:
         - accessToken: []
       parameters:
@@ -122,8 +122,6 @@ paths:
           examples:
             application/json: |-
               {}
-          schema:
-            type: object
         403:
           description: |-
             You do not have permission to unban the user from the room. A meaningful ``errcode`` and description error text will be returned. Example reasons for rejections are:

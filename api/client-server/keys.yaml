@@ -28,8 +28,8 @@ paths:
   "/keys/upload":
     post:
       summary: Upload end-to-end encryption keys.
-      description: |-
-        Publishes end-to-end encryption keys for the device.
+      description: Publishes end-to-end encryption keys for the device.
+      operationId: uploadKeys
       security:
         - accessToken: []
       parameters:
@@ -39,6 +39,7 @@ paths:
             The keys to be published
           schema:
             type: object
+            title: UploadKeysRequest
             properties:
               device_keys:
                 description: |-
@@ -74,6 +75,7 @@ paths:
             The provided keys were sucessfully uploaded.
           schema:
             type: object
+            title: UploadKeysResponse
             properties:
               one_time_key_counts:
                 type: object
@@ -93,8 +95,8 @@ paths:
   "/keys/query":
     post:
       summary: Download device identity keys.
-      description: |-
-        Returns the current devices and identity keys for the given users.
+      description: Returns the current devices and identity keys for the given users.
+      operationId: downloadKeys
       security:
         - accessToken: []
       parameters:
@@ -104,6 +106,7 @@ paths:
             Query defining the keys to be downloaded
           schema:
             type: object
+            title: DownloadKeysRequest
             properties:
               timeout:
                 type: integer
@@ -133,6 +136,7 @@ paths:
             The device information
           schema:
             type: object
+            title: DownloadKeysResponse
             properties:
               failures:
                 type: object
@@ -201,8 +205,8 @@ paths:
   "/keys/claim":
     post:
       summary: Claim one-time encryption keys.
-      description: |-
-        Claims one-time keys for use in pre-key messages.
+      description: Claims one-time keys for use in pre-key messages.
+      operationId: claimKeys
       security:
         - accessToken: []
       parameters:
@@ -212,6 +216,7 @@ paths:
             Query defining the keys to be claimed
           schema:
             type: object
+            title: ClaimKeysRequest
             properties:
               timeout:
                 type: integer
@@ -240,6 +245,7 @@ paths:
             The claimed keys
           schema:
             type: object
+            title: ClaimKeysResponse
             properties:
               failures:
                 type: object
@@ -286,6 +292,7 @@ paths:
           membership state ``join``); *and*
         * added new device identity keys or removed an existing device with
           identity keys, between ``from`` and ``to``.
+      operationId: getChangedKeys
       security:
         - accessToken: []
       parameters:
@@ -316,6 +323,7 @@ paths:
             The list of users who updated their devices.
           schema:
             type: object
+            title: GetChangedKeysResponse
             properties:
               changes:
                 type: array
