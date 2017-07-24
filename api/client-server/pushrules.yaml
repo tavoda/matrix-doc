@@ -488,6 +488,8 @@ paths:
                 type: boolean
                 description: Whether the push rule is enabled or not.
             required: ["enabled"]
+      tags:
+        - Push notifications
     put:
       summary: "Enable or disable a push rule."
       description: |-
@@ -546,7 +548,7 @@ paths:
     get:
       summary: "The actions for a push rule"
       description: This endpoint get the actions for the specified push rule.
-      operationID: getPushRuleActions
+      operationId: getPushRuleActions
       security:
         - accessToken: []
       parameters:
@@ -591,6 +593,8 @@ paths:
                 items:
                   type: string
             required: ["actions"]
+      tags:
+        - Push notifications
     put:
       summary: "Set the actions for a push rule."
       description: |-

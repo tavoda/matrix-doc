@@ -234,6 +234,8 @@ paths:
               }
           schema:
             type: object
+      tags:
+        - User data
   "/account/password":
     post:
       summary: "Changes a user's password."
@@ -303,6 +305,8 @@ paths:
       responses:
         200:
           description: An email was sent to the given address
+      tags:
+        - User data
   "/account/deactivate":
     post:
       summary: "Deactivate a user's account."

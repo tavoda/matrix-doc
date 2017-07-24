@@ -36,7 +36,7 @@ paths:
         For example, if the endpoint is called with
         ``redirectUrl=https://client.example.com/?q=p``, it might redirect to
         ``https://cas.example.com/?service=https%3A%2F%2Fserver.example.com%2F_matrix%2Fclient%2F%CLIENT_MAJOR_VERSION%%2Flogin%2Fcas%2Fticket%3FredirectUrl%3Dhttps%253A%252F%252Fclient.example.com%252F%253Fq%253Dp``.
-
+      operationId: casRedirect
       parameters:
         - in: query
           type: string
@@ -51,3 +51,5 @@ paths:
           headers:
             Location:
               type: "string"
+      tags:
+        - CAS authentication

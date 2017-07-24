@@ -39,6 +39,7 @@ paths:
 
         If validation is unsuccessful, the server should respond with a ``401
         Unauthorized`` error, the body of which will be displayed to the user.
+      operationId: casTicket
       parameters:
         - in: query
           type: string
@@ -63,3 +64,5 @@ paths:
                  https://client.example.com/?q=p&loginToken=secrettoken
         401:
           description: The server was unable to validate the CAS ticket.
+      tags:
+        - CAS authentication

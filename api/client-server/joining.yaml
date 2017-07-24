@@ -54,14 +54,12 @@ paths:
           x-example: "!d41d8cd:matrix.org"
         - in: body
           name: ThirdParty
-          type: object
           schema:
             type: object
             title: RoomJoinRequest
             name: RoomJoinRequest
             properties:
               third_party_signed:
-                type: object
                 $ref: "#/definitions/ThirdParty"
             example: |-
               {
@@ -141,7 +139,6 @@ paths:
                 title: ThirdPartySignedSigned
                 properties:
                   signed:
-                    type: object
                     $ref: "#/definitions/ThirdParty"
                 required: ["signed"]
             example: |-

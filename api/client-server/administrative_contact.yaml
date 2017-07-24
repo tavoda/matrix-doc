@@ -146,3 +146,5 @@ paths:
       responses:
         200:
           description: An email was sent to the given address
+      tags:
+        - User data
