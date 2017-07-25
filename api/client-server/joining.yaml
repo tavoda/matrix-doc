@@ -57,7 +57,6 @@ paths:
           schema:
             type: object
             title: RoomJoinRequest
-            name: RoomJoinRequest
             properties:
               third_party_signed:
                 $ref: "#/definitions/ThirdParty"
