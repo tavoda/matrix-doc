@@ -287,6 +287,7 @@ paths:
   "/account/password/email/requestToken":
     post:
       summary: Requests a validation token be sent to the given email address for the purpose of resetting a user's password
+      operationId: requestPasswordReset
       description: |-
         Proxies the identity server API ``validate/email/requestToken``, but
         first checks that the given email address **is** associated with an account
